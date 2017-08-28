@@ -21,10 +21,10 @@ app.use('/', function (req, res) {
  MongoClient.connect(mongoURL, function (err, db) {
   const robots = db.collection('robots');
   robots.find({}).toArray(function (err, docs) {
-   res.render("index", {robots: docs})
-  })
- })
-})
+   res.render("index", {robots: docs});
+ });
+ });
+});
 
 
 
