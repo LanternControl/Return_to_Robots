@@ -26,6 +26,24 @@ app.use('/', function (req, res) {
  });
 });
 
+app.use('/employed', function (req, res) {
+ MongoClient.connect(mongoURL, function (err, db) {
+  const robots = db.collection('robots');
+  robots.find({}).toArray(function (err, docs) {
+   res.render("employed", {robots: docs});
+ });
+ });
+});
+
+app.use('/unemployed', function (req, res) {
+ MongoClient.connect(mongoURL, function (err, db) {
+  const robots = db.collection('robots');
+  robots.find({}).toArray(function (err, docs) {
+   res.render("unemployed", {robots: docs});
+ });
+ });
+});
+
 
 
 
