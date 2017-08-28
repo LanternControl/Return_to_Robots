@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Robuts</title>
+<link rel="stylesheet" type="text/css" href="main.css" />
+<link rel="stylesheet" type="text/css" href="/main.css" />
+
+</head>
+
+<body>
+  <h3>Index</h3>
+  <div id='wrapper'>
+    {{#users}}
+    <div id='box'>
+      <img src="{{avatar}}"/>
+      {{name}}
+      {{job}}
+      {{^job}}
+      <div class='hire'>
+        <p>Available for hire</p>
+      </div>
+      {{/job}}
+    </div>
+    {{/users}}
+  </div>
+</body>
+
+</html>

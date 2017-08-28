@@ -1,0 +1,19 @@
+#wrapper{
+  display:flex;
+  justify-content: space-between;
+  flex-flow: row wrap;
+}
+
+body {
+  background-color: cyan;
+}
+
+#box {
+  border: 2px solid black;
+  flex-grow: 1;
+}
+
+p {
+  color: red;
+  font-size: 20px;
+}
