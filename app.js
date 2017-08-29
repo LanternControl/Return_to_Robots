@@ -17,19 +17,12 @@ app.set('view engine', 'mustache');
 app.use(express.static(__dirname + '/public'));
 
 
-app.use('/', function (req, res) {
- MongoClient.connect(mongoURL, function (err, db) {
-  const robots = db.collection('robots');
-  robots.find({}).toArray(function (err, docs) {
-   res.render("index", {robots: docs});
- });
- });
-});
+
 
 app.use('/employed', function (req, res) {
  MongoClient.connect(mongoURL, function (err, db) {
   const robots = db.collection('robots');
-  robots.find({}).toArray(function (err, docs) {
+  robots.find({job:{$not:{$in:[null]}}}).toArray(function (err, docs) {
    res.render("employed", {robots: docs});
  });
  });
@@ -38,12 +31,21 @@ app.use('/employed', function (req, res) {
 app.use('/unemployed', function (req, res) {
  MongoClient.connect(mongoURL, function (err, db) {
   const robots = db.collection('robots');
-  robots.find({}).toArray(function (err, docs) {
+  robots.find({job:null}).toArray(function (err, docs) {
    res.render("unemployed", {robots: docs});
  });
  });
 });
 
+//so silly, having to put this at the bottom - stupid javascript
+app.use('/', function (req, res) {
+ MongoClient.connect(mongoURL, function (err, db) {
+  const robots = db.collection('robots');
+  robots.find({}).toArray(function (err, docs) {
+   res.render("index", {robots: docs});
+ });
+ });
+});
 
 
 
